@@ -1,6 +1,7 @@
 import { fetchProducts } from '@/services/apiHandler'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
+import Cart from '@/svg/Cart'
 
 type Product = {
   id: number
@@ -47,29 +48,38 @@ export default function Home() {
   return (
     <div className='max-w-screen-xl mx-auto my-24'>
       <div className='flex justify-between'>
-        <input
+       <div className='relative w-full'>
+        <svg className="absolute -translate-y-1/2 top-1/2 left-3 w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+        </svg>
+       <input
           type="search"
           name="search" 
           id="search" 
-          className='border border-blue-500 rounded-lg w-1/2 shadow-sm'
+          placeholder='Search by name'
+          className='border border-green-500 rounded-lg w-1/2 shadow-sm px-8 py-2'
           onChange={(e) => handleSearch(e.target.value)}
         />
+       </div>
+        <div className='flex justify-between space-x-10'>
         <select 
           name="select"
           id="select" 
-          className='border border-blue-800 rounded-lg'
+          className='border border-green-500 rounded-lg px-4 py-px'
           onChange={(e) => handleSelect(e.target.value)}
         >
           <option value="sort">Sort by: Price</option>
           <option value="lowToHigh">Low to High</option>
           <option value="highToLow">High to Low</option>
         </select>
+         <button> <Cart/> </button>
+        </div>
       </div>
       <div className="grid grid-cols-3 gap-8 my-10">
         {(filteredProducts.length ? filteredProducts : products).map((product, i) => (
           <div
             key={i}
-            className="max-md:flex max-sm:gap-3 sm:gap-1 max-md:px-0 cursor-pointer rounded-[20px] py-3 px-3 bg-[#fff] shadow-[0_1px_5px_0px_rgba(16,24,40,0.5)] max-md:shadow-[0_0px_0px_0px_#fff]"
+            className="relative max-md:flex max-sm:gap-3 sm:gap-1 max-md:px-0 cursor-pointer rounded-[20px] pt-3 pb-10 px-3 bg-[#fff] shadow-[0_1px_5px_0px_rgba(16,24,40,0.5)] max-md:shadow-[0_0px_0px_0px_#fff]"
           >
             <Image
               className="w-full h-48 rounded-xl max-md:w-2/6 max-md:h-auto max-md:rounded object-contain"
@@ -79,23 +89,24 @@ export default function Home() {
               height={100}
             />
             <div className="w-full">
-              <div className="flex w-full justify-between mt-2 mb-2 max-sm:mt-0 max-sm:mb-0">
-                <h1 className="font-medium text-lg text-[#3E3D5B] leading-none">
+              <div className="flex justify-between items-center mt-2 mb-2 max-sm:mt-0 max-sm:mb-0 font-semibold text-lg">
+                <h1 className="text-[#3E3D5B] leading-none max-w-72 mt-3">
                   {product.title}
                 </h1>
 
                 <div>${product.price}</div>
               </div>
-              <p className="text-sm text-[#3E3D5B] my-3 max-sm:my-2">
+              <p className="text-sm mt-1 mb-10 max-sm:my-2 text-gray-400 h-[60px] overflow-hidden">
                 {product.description}
               </p>
-              <div className="flex justify-between">
+              <div className="absolute bottom-3 inset-x-3 flex justify-between">
                 <p className="py-2 px-2 rounded-lg text-center bg-[#F0FDF4]">
                   {product.category}
                 </p>
-                <p className="py-2 px-2 rounded-lg text-center bg-[#F0FDF4]">
-                  {product.rating.rate}
+                <p className="py-2 px-2 rounded-lg text-center bg-green-500 text-white">
+                <button>ADD TO CART</button>
                 </p>
+                
               </div>
             </div>
           </div>

@@ -21,7 +21,7 @@ export default function ProductCard({ product, onAddToCart }: Props) {
   };
 
   return (
-    <div className="relative max-md:flex max-sm:gap-3 sm:gap-1 max-md:px-0 cursor-pointer rounded-[20px] pt-3 pb-10 px-3 bg-[#fff] shadow-[0_1px_5px_0px_rgba(16,24,40,0.5)] max-md:shadow-[0_0px_0px_0px_#fff]">
+    <div className="relative max-md:flex max-sm:gap-3 sm:gap-1 max-md:px-1 cursor-pointer rounded-[20px] pt-3 pb-20 lg:pb-10 px-3 bg-white shadow-[0_1px_5px_0px_rgba(16,24,40,0.5)]">
       <Image
         className="w-full h-48 rounded-xl max-md:w-2/6 max-md:h-auto max-md:rounded object-contain"
         alt="property picture"

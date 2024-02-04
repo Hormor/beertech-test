@@ -23,7 +23,7 @@ export default function Home() {
 
   const handleSearch = (search: string) => {
     const res = products.filter((product) => {
-      return product.title.toLowerCase().indexOf(search.toLowerCase()) > -1;
+      return product.title.toLowerCase().includes(search.toLowerCase());
     });
     setFilteredProducts(res);
   };
